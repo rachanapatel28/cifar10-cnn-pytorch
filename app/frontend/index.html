@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>CIFAR-10 Classifier</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header>
+    <h1>CIFAR-10 Image Classifier</h1>
+    <p id="status" class="status">Checking backend…</p>
+  </header>
+
+  <main>
+    <section>
+      <div id="drop-zone" class="drop-zone">
+        <p>Drag &amp; drop an image here, or click to choose a file</p>
+        <input id="file-input" type="file" accept="image/*" hidden />
+      </div>
+
+      <h2>Or try a sample</h2>
+      <div id="samples" class="samples"></div>
+    </section>
+
+    <section>
+      <div id="preview-wrap" class="preview-wrap" hidden>
+        <img id="preview" alt="Selected image preview" />
+      </div>
+
+      <div id="result" class="result" hidden>
+        <p id="result-text" class="result-text"></p>
+        <div id="chart" class="chart"></div>
+        <p class="legend-note">Bar color: green = confident prediction, amber = uncertain (below 50%). Hover a bar for its exact probability.</p>
+      </div>
+
+      <p id="error" class="error" hidden></p>
+    </section>
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>

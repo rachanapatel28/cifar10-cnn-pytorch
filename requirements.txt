@@ -1,0 +1,9 @@
+torch
+torchvision
+tqdm
+matplotlib
+ipykernel
+fastapi
+uvicorn[standard]
+python-multipart
+pillow

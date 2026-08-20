@@ -1,0 +1,232 @@
+:root {
+  color-scheme: light;
+  --surface: #fcfcfb;
+  --page: #f9f9f7;
+  --text-primary: #0b0b0b;
+  --text-secondary: #52514e;
+  --text-muted: #898781;
+  --gridline: #e1e0d9;
+  --baseline: #c3c2b7;
+  --border: rgba(11, 11, 11, 0.1);
+  --series-1: #2a78d6;
+  --status-good: #0ca30c;
+  --status-warning: #fab219;
+  --drop-zone-bg: #f0f4fa;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    color-scheme: dark;
+    --surface: #1a1a19;
+    --page: #0d0d0d;
+    --text-primary: #ffffff;
+    --text-secondary: #c3c2b7;
+    --text-muted: #898781;
+    --gridline: #2c2c2a;
+    --baseline: #383835;
+    --border: rgba(255, 255, 255, 0.1);
+    --series-1: #3987e5;
+    --status-good: #0ca30c;
+    --status-warning: #fab219;
+    --drop-zone-bg: #1e2530;
+  }
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 2rem;
+  background: var(--page);
+  color: var(--text-primary);
+  font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
+}
+
+header h1 {
+  font-size: 1.5rem;
+  margin: 0 0 0.25rem;
+}
+
+.status {
+  margin: 0 0 1.5rem;
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+}
+
+.status.ok::before {
+  content: "● ";
+  color: var(--status-good);
+}
+
+.status.error::before {
+  content: "● ";
+  color: var(--status-warning);
+}
+
+main {
+  display: grid;
+  grid-template-columns: minmax(280px, 1fr) minmax(320px, 1.2fr);
+  gap: 2rem;
+  align-items: start;
+}
+
+@media (max-width: 800px) {
+  main {
+    grid-template-columns: 1fr;
+  }
+}
+
+h2 {
+  font-size: 1rem;
+  color: var(--text-secondary);
+  margin: 1.5rem 0 0.75rem;
+}
+
+.drop-zone {
+  border: 2px dashed var(--baseline);
+  border-radius: 8px;
+  background: var(--surface);
+  padding: 2rem 1rem;
+  text-align: center;
+  color: var(--text-secondary);
+  cursor: pointer;
+  transition: border-color 0.15s, background 0.15s;
+}
+
+.drop-zone p {
+  margin: 0;
+  font-size: 0.9rem;
+}
+
+.drop-zone.drag-over {
+  border-color: var(--series-1);
+  background: var(--drop-zone-bg);
+  color: var(--text-primary);
+}
+
+.samples {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(112px, 1fr));
+  gap: 0.75rem;
+}
+
+.sample {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.35rem;
+  cursor: grab;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 0.5rem;
+  background: var(--surface);
+}
+
+.sample img {
+  width: 96px;
+  height: 96px;
+  image-rendering: pixelated;
+  border-radius: 4px;
+}
+
+.sample span {
+  font-size: 0.75rem;
+  color: var(--text-secondary);
+  text-transform: capitalize;
+}
+
+.preview-wrap {
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+
+.preview-wrap img {
+  width: 160px;
+  height: 160px;
+  object-fit: contain;
+  image-rendering: pixelated;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+}
+
+.result-text {
+  font-size: 1.1rem;
+  margin: 0 0 1rem;
+}
+
+.result-text .confident {
+  color: var(--status-good);
+}
+
+.result-text .uncertain {
+  color: var(--status-warning);
+}
+
+.chart {
+  display: flex;
+  align-items: flex-end;
+  gap: 2px;
+  height: 200px;
+  border-bottom: 1px solid var(--baseline);
+  padding: 0 0.5rem;
+}
+
+.bar-col {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+  height: 100%;
+  min-width: 0;
+}
+
+.bar-value {
+  font-size: 0.7rem;
+  color: var(--text-secondary);
+  margin-bottom: 2px;
+  white-space: nowrap;
+}
+
+.bar {
+  width: 20px;
+  max-width: 24px;
+  background: var(--series-1);
+  border-radius: 4px 4px 0 0;
+}
+
+.bar-col.top .bar {
+  background: var(--status-good);
+}
+
+.bar-col.top.uncertain .bar {
+  background: var(--status-warning);
+}
+
+.bar-col.top .bar-value {
+  color: var(--text-primary);
+  font-weight: 600;
+}
+
+.bar-label {
+  font-size: 0.65rem;
+  color: var(--text-muted);
+  margin-top: 6px;
+  text-transform: capitalize;
+  writing-mode: vertical-rl;
+  transform: rotate(180deg);
+  max-height: 60px;
+}
+
+.legend-note {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  margin-top: 0.75rem;
+}
+
+.error {
+  color: var(--status-warning);
+  font-size: 0.85rem;
+}
