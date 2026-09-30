@@ -7,3 +7,4 @@ checkpoints/*
 !checkpoints/history.json
 runs/
 .DS_Store
+*.pem
